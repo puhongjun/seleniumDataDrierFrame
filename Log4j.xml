@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" >
+
+	<!-- 日志输出到控制台 -->
+    <appender name="console" class="org.apache.log4j.ConsoleAppender">
+        <!-- 日志输出格式 -->
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %-5p [%c{1}]  %m %n"/>
+        </layout>
+    </appender>
+
+	<!--定义了log4j将日志信息打印到日志文件,每天生成一个log文件-->
+	<appender name="fileAppender" class="org.apache.log4j.DailyRollingFileAppender">
+	
+		<!-- 定义日志信息级别为 info -->
+		<param name="Threshold" value="INFO"/>
+		
+		<!-- 定义日志文件名为logs.log，日志文件与xml文件在同一文件夹下，若不存在则自动创建 -->
+		<param name="File" value="logs/log4j.log"/>
+		
+		<layout class="org.apache.log4j.PatternLayout">
+			<!-- 定义日志格式 -->
+			<param name= "ConversionPattern" value="%d %-5p [%c{1}]  %m %n"/>
+		</layout>
+	</appender>
+	
+	<!-- 输出到控制台和文件夹中的日志级别 -->
+	<root>
+		<priority value="info" />
+		<appender-ref ref="console" />
+        <appender-ref ref="fileAppender"/>
+    </root>
+
+</log4j:configuration>
